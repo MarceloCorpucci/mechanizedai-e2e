@@ -30,4 +30,4 @@ def once_user_is_logged_in(load_environment_variables):
     driver.maximize_window()
     driver.get(os.getenv('BASE_URL'))
     login_page = LoginPage(driver)
-    login_page.login_using(os.getenv('TEST_USER'), os.getenv('TEST_USER'))
+    return login_page.login_using(os.getenv('TEST_USER'), os.getenv('TEST_PASSWORD'))

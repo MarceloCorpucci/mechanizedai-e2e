@@ -1,0 +1,5 @@
+pytest==8.0.1
+PyHamcrest==2.1.0
+python-dotenv==1.0.1
+selenium==4.18.1
+webdriver-manager==4.0.1

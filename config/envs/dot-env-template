@@ -1,3 +1,5 @@
+# Create a new file with the name convention .env.TARGET-ENVIRONMENT. For instance: .env.sandbox
+# Add the variables below, with the corresponding values for the environment you want to choose
 BASE_URL='<TARGET URL HERE>'
 TEST_USER='mechanized@<TEST-USER>.com'
 TEST_PASSWORD='<SUPER STRONG PASS>'

@@ -6,7 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from config.env_mapper import ENV_MAPPER
-from framework.pages.login_page import LoginPage
+from core.pages.login_page import LoginPage
 
 
 def pytest_addoption(parser):

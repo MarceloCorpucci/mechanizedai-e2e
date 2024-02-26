@@ -12,13 +12,14 @@ from core.pages.login_page import LoginPage
 def pytest_addoption(parser):
     parser.addoption("--target-env", action="store", default="SANDBOX", help="Target environment to be used during "
                                                                              "test execution.")
-    target_env = os.environ['--target-env']
-    logging.debug(f'Target Environment: {target_env}')
 
 
 @pytest.fixture
-def load_environment_variables():
-    path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', ENV_MAPPER[os.environ['--target-env']]))
+def load_environment_variables(request):
+    target_env = request.config.getoption('--target-env')
+    logging.debug(f'Target Environment: {target_env}')
+
+    path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', ENV_MAPPER[target_env]))
     logging.debug(f'.env file path: {path}')
     load_dotenv(path)
 

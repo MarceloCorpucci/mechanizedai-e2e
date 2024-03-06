@@ -26,7 +26,17 @@ class MantineSelectHelper:
         self.action.send_keys(Keys.ARROW_DOWN).send_keys(Keys.ENTER).perform()
         return self
 
+    def select_app(self, app_name):
+        WebDriverWait(self.driver, 15).until(EC.presence_of_element_located(PipelineOverviewLocator.AVAILABLE_APPS))
+        available_apps = self.driver.find_elements(*PipelineOverviewLocator.AVAILABLE_APPS)
+        for app in available_apps:
+            if app.text == app_name:
+                app.click()
+                break
+        return self
+
     def return_value_attribute_from_active_descendant(self) -> str:
         self.return_value_attribute_from_active_descendant()
-        WebDriverWait(self.driver, 15).until(EC.element_attribute_to_include(PipelineOverviewLocator.SELECT_AN_APP, 'value'))
+        WebDriverWait(self.driver, 15).until(
+            EC.element_attribute_to_include(PipelineOverviewLocator.SELECT_AN_APP, 'value'))
         return self.select.get_attribute('value')

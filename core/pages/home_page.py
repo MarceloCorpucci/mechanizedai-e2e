@@ -2,6 +2,7 @@ from core.locators.home_locators import HomeLocator
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from core.pages.insight_page import InsightPage
+from core.pages.pipeline_creation_page import PipelineCreationLocator
 
 
 class HomePage:
@@ -16,3 +17,7 @@ class HomePage:
         WebDriverWait(self.driver, 15).until(EC.presence_of_element_located(HomeLocator.VIEW_INSIGHT_BUTTON))
         self.driver.find_element(*HomeLocator.VIEW_INSIGHT_BUTTON).click()
         return InsightPage(self.driver)
+
+    def toaster_message(self):
+        WebDriverWait(self.driver, 15).until(EC.presence_of_element_located(PipelineCreationLocator.TOASTER))
+        return self.driver.find_element(*PipelineCreationLocator.TOASTER).text

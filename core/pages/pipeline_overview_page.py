@@ -14,8 +14,7 @@ class PipelineOverviewPage:
         WebDriverWait(self.driver, 15).until(EC.presence_of_element_located(PipelineOverviewLocator.OVERVIEW_LABEL))
         return self.driver.find_element(*PipelineOverviewLocator.OVERVIEW_LABEL).is_displayed()
 
-    def select_application(self):
-        # TODO: An addition to select an application based on its name is needed
+    def select_application(self, appName):
         WebDriverWait(self.driver, 15).until(EC.presence_of_element_located(PipelineOverviewLocator.SELECT_AN_APP))
 
         select_app_webelement = self.driver.find_element(*PipelineOverviewLocator.SELECT_AN_APP)
@@ -24,12 +23,13 @@ class PipelineOverviewPage:
         mantine_select \
             .on_component(select_app_webelement) \
             .expand() \
-            .select_active_descendant()
+            .select_app(appName)
 
         return self
 
     def go_to_create_pipeline_page(self) -> PipelineCreationPage:
         WebDriverWait(self.driver, 15).until(EC.presence_of_element_located(PipelineOverviewLocator.CREATE_BUTTON))
+        WebDriverWait(self.driver, 15).until(lambda driver: not driver.find_element(*PipelineOverviewLocator.CREATE_BUTTON).get_attribute("disabled"))
         self.driver.find_element(*PipelineOverviewLocator.CREATE_BUTTON).click()
         return PipelineCreationPage(self.driver)
 
